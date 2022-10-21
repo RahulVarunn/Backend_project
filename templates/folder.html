@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <style>
+#display-image{
+  width: 400px;
+  height: 225px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+        </style>
+    </head>
+   <body>
+    
+      <form action = "/upload" method = "POST"  enctype = "multipart/form-data">
+         <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg" name="file"> 
+         <input type="text" name="comments" placeholder="comments">
+         <input type="text" name="tags" placeholder="tags">
+         <div id="display-image"></div>
+         <input type = "submit"/>
+      </form>
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      <script>
+const image_input = document.querySelector("#image-input");
+image_input.addEventListener("change", function() {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    const uploaded_image = reader.result;
+    document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});
+
+      </script>
+   </body>
+</html>
+
+
